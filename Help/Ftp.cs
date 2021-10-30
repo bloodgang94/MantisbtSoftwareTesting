@@ -24,10 +24,13 @@ namespace Mantisbt.Help
             var ftpRequest = (FtpWebRequest)WebRequest.Create($"ftp://127.0.0.1/config/{originalConfig}");
             ftpRequest.Credentials = new NetworkCredential("root", "");
             ftpRequest.Method = WebRequestMethods.Ftp.DeleteFile;
-            var response = (FtpWebResponse)ftpRequest.GetResponse();
 
-            if (response.StatusCode != FtpStatusCode.FileActionOK)
-                throw new Exception(response.StatusDescription);
+            using (var response = (FtpWebResponse) ftpRequest.GetResponse())
+            {
+                if (response.StatusCode != FtpStatusCode.FileActionOK)
+                    throw new Exception(response.StatusDescription);
+            }
+
 
             FtpRenameFile(backupConfig, originalConfig);
         }
@@ -38,8 +41,12 @@ namespace Mantisbt.Help
             ftpRequest.Credentials = new NetworkCredential("root", "");
             ftpRequest.Method = WebRequestMethods.Ftp.Rename;
             ftpRequest.RenameTo = $"/config/{newFileName}";
-            var ftpResponse = (FtpWebResponse)ftpRequest.GetResponse();
-            ftpResponse.Close();
+
+            using (var response = (FtpWebResponse)ftpRequest.GetResponse())
+            {
+                if (response.StatusCode != FtpStatusCode.FileActionOK)
+                    throw new Exception(response.StatusDescription);
+            }
         }
 
         private static void UploadFileFtp()
