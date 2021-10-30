@@ -47,12 +47,19 @@
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\MSTest.TestFramework.2.1.2\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=3.13.2.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>packages\NUnit.3.13.2\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.13.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>packages\RestSharp.106.13.0\lib\net452\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="WebDriver, Version=3.141.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Selenium.WebDriver.3.141.0\lib\net45\WebDriver.dll</HintPath>
     </Reference>
@@ -62,6 +69,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppManager.cs" />
+    <Compile Include="Help\Decode.cs" />
+    <Compile Include="Help\Ftp.cs" />
+    <Compile Include="Models\Account.cs" />
     <Compile Include="Models\ProjectComparer.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="PageObject\LoginPage.cs" />
@@ -70,14 +80,23 @@
     <Compile Include="PageObject\Admin\ManageProjectPage.cs" />
     <Compile Include="PageObject\Menu\Menu.cs" />
     <Compile Include="PageObject\Menu\SideBar.cs" />
+    <Compile Include="PageObject\MyPage.cs" />
+    <Compile Include="PageObject\SignUpPage.cs" />
+    <Compile Include="PageObject\VerifyPage.cs" />
     <Compile Include="PageObject\WebPage.cs" />
+    <Compile Include="RestApi\MailHogModel.cs" />
     <Compile Include="Test\Admin\DeleteProjectTest.cs" />
     <Compile Include="Test\Admin\CreateProjectTest.cs" />
-    <Compile Include="Test\SetUpFixture.cs" />
+    <Compile Include="Test\AllSetUpFixure.cs" />
+    <Compile Include="Test\Registration\RegNewUserTest.cs" />
+    <Compile Include="Test\Admin\SetUpFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="config_inc.php" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

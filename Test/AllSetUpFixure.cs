@@ -5,21 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
-namespace Mantisbt.Test.Admin
+namespace Mantisbt.Test
 {
     [SetUpFixture]
-    class SetUpFixture
+    class AllSetUpFixure
     {
-        [OneTimeSetUp]
-        public void LoginAsAdmin()
-        {
-            AppManager.Instance.LoginPage.Authorization("root", "");
-        }
-
         [OneTimeTearDown]
         public void TearDown()
         {
-            AppManager.Instance.Browser.Quit();
+            AppManager.Instance.Browser?.Quit();
         }
     }
 }
