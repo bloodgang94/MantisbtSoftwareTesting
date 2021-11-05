@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using NUnit.Framework;
 
 namespace Mantisbt.Help
 {
@@ -55,7 +56,7 @@ namespace Mantisbt.Help
             request.Method = WebRequestMethods.Ftp.UploadFile;
             request.Credentials = new NetworkCredential("root", "");
             byte[] fileContents;
-            using (var sourceStream = new StreamReader("config_inc.php"))
+            using (var sourceStream = new StreamReader(TestContext.CurrentContext.TestDirectory + "\\config_inc.php"))
             {
                 fileContents = Encoding.UTF8.GetBytes(sourceStream.ReadToEnd());
             }

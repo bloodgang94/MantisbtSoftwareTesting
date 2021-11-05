@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Mantisbt.PageObject;
 using Mantisbt.PageObject.Admin;
 using Mantisbt.PageObject.Menu;
+using Mantisbt.Service;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 
@@ -27,6 +28,7 @@ namespace Mantisbt
         public SignUpPage SignUpPage { get; }
         public VerifyPage VerifyPage { get; }
         public MyPage MyPage { get; }
+        public SoapHelper SoapHelper { get; }
 
         private AppManager()
         {
@@ -41,6 +43,7 @@ namespace Mantisbt
             SignUpPage = new SignUpPage(this);
             VerifyPage = new VerifyPage(this);
             MyPage = new MyPage(this);
+            SoapHelper = new SoapHelper();
         }
     }
 }

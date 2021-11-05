@@ -9,10 +9,11 @@ namespace Mantisbt.Models
 {
     public class Project
     {
+        public int Id { get; set; }
         public string Name { get; set; }
-        public string State { get; set; }
+        public int State { get; set; }
         public bool IsInheritCriteria { get; set; }
-        public string Visibility { get; set; }
+        public int Visibility { get; set; }
         public string Description { get; set; }
 
         public override string ToString()

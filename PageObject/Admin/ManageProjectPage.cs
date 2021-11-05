@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Mantisbt.Models;
+using Mantisbt.Service;
 using OpenQA.Selenium;
 
 namespace Mantisbt.PageObject.Admin
@@ -20,9 +21,9 @@ namespace Mantisbt.PageObject.Admin
             return new ManageProjectCreatePage(_app);
         }
 
-        public ManageProjectEditPage OpenProject(int index)
+        public ManageProjectEditPage OpenProject(int id)
         {
-            Table[index].FindElement(By.XPath("./td/a")).Click();
+            _app.Browser.FindElement(By.XPath($"//td/a[contains(@href, 'id={id}')]")).Click();
             return  new ManageProjectEditPage(_app);
         }
 
@@ -33,7 +34,7 @@ namespace Mantisbt.PageObject.Admin
             foreach (var value in Table)
             {
                 var tds = value.FindElements(By.XPath("./td"));
-                projectsList.Add(new Project(){ Name = tds[0].Text, State = tds[1].Text, Visibility = tds[3].Text, Description = tds[4].Text });
+                projectsList.Add(new Project(){ Name = tds[0].Text, State = int.Parse(tds[1].Text), Visibility = int.Parse(tds[3].Text), Description = tds[4].Text });
             }
 
             return projectsList;
